@@ -6,11 +6,11 @@ namespace DefaultNamespace
 {
     public class NoiseMultiControlClip : PlayableAsset, ITimelineClipAsset
     {
-        [SerializeField] private NoiseMultiControlBehaviour template = new NoiseMultiControlBehaviour();
+        [SerializeField] private NoiseMultiControlBehaviour settings = new NoiseMultiControlBehaviour();
         
         public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
         {
-            return ScriptPlayable<NoiseMultiControlBehaviour>.Create(graph, template);
+            return ScriptPlayable<NoiseMultiControlBehaviour>.Create(graph, settings);
         }
 
         public ClipCaps clipCaps => ClipCaps.Blending;
