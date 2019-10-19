@@ -6,13 +6,21 @@ namespace DefaultNamespace
 {
     public class NoiseControlMixer : PlayableBehaviour
     {
-        private Transform targetTransform;
-        private Vector3 startPos;
+        protected Transform targetTransform;
+        protected Vector3 startPos;
 
         private bool firstFrameHappened;
         private const float StartSpeed = 0;
         private const float StartIntensity = 0;
         private static readonly Vector3 StartAxis = new Vector3(0,0,0);
+
+        protected virtual void SetupFirstFrame(Transform playableTransform)
+        {
+            targetTransform = playableTransform;
+            startPos = targetTransform.localPosition;
+
+            firstFrameHappened = true;
+        }
 
         public override void ProcessFrame(Playable playable, FrameData info, object playerData)
         {
@@ -21,10 +29,7 @@ namespace DefaultNamespace
 
                 if (!firstFrameHappened)
                 {
-                    targetTransform = playableTransform;
-                    startPos = targetTransform.localPosition;
-
-                    firstFrameHappened = true;
+                    SetupFirstFrame(playableTransform);
                 }
                 
                 int inputCount = playable.GetInputCount();
@@ -72,7 +77,10 @@ namespace DefaultNamespace
         public override void OnPlayableDestroy(Playable playable)
         {
             firstFrameHappened = false;
-            targetTransform.localPosition = startPos;
+            if (targetTransform != null)
+            {
+                targetTransform.localPosition = startPos;
+            }
         }
     }
 }
