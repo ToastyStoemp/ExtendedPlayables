@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using Random = UnityEngine.Random;
 
-namespace DefaultNamespace
+namespace Playables
 {
     public class NoiseControlMixer : PlayableBehaviour
     {
