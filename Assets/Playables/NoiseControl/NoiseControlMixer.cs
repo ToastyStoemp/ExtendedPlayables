@@ -43,12 +43,11 @@ namespace DefaultNamespace
                 for (int i = 0; i < inputCount; i++)
                 {
                     float inputWeight = playable.GetInputWeight(i);
-                    ScriptPlayable<NoiseControlBehaviour> inputPlayable = (ScriptPlayable<NoiseControlBehaviour>) playable.GetInput(i);
-                    NoiseControlBehaviour noiseBehaviour = inputPlayable.GetBehaviour();
+                    GetDataFromBehaviour(playable.GetInput(i),out float noiseBehaviourSpeed,out float noiseBehaviourIntensity, out Vector3 noiseBehaviourAxis);
 
-                    blendedSpeed += noiseBehaviour.speed * inputWeight;
-                    blendedIntensity += noiseBehaviour.intensity * inputWeight;
-                    blendedAxis += noiseBehaviour.axis * inputWeight;
+                    blendedSpeed += noiseBehaviourSpeed * inputWeight;
+                    blendedIntensity += noiseBehaviourIntensity * inputWeight;
+                    blendedAxis += noiseBehaviourAxis * inputWeight;
 
                     totalWeight += inputWeight;
                 }
@@ -62,6 +61,16 @@ namespace DefaultNamespace
                 
                 ApplyNoise(normalisedTime, resultSpeed, resultIntensity, resultAxis);
             }
+        }
+
+        protected virtual void GetDataFromBehaviour(Playable input, out float speed, out float intensity, out Vector3 axis)
+        {
+            ScriptPlayable<NoiseControlBehaviour> inputPlayable = (ScriptPlayable<NoiseControlBehaviour>) input;
+            NoiseControlBehaviour noiseBehaviour = inputPlayable.GetBehaviour();
+
+            speed = noiseBehaviour.speed;
+            intensity = noiseBehaviour.intensity;
+            axis = noiseBehaviour.axis;
         }
 
         protected virtual void ApplyNoise(float time, float speed, float intensity, Vector3 axis)
