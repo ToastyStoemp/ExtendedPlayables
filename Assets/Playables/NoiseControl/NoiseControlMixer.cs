@@ -10,10 +10,10 @@ namespace DefaultNamespace
         private Vector3 startPos;
 
         private bool firstFrameHappened;
-        private float startSpeed = 0;
-        private float startIntensity = 0;
-        private Vector3 startAxis = Vector3.zero;
-        
+        private const float StartSpeed = 0;
+        private const float StartIntensity = 0;
+        private static readonly Vector3 StartAxis = new Vector3(0,0,0);
+
         public override void ProcessFrame(Playable playable, FrameData info, object playerData)
         {
             if (playerData is Transform playableTransform)
@@ -51,17 +51,22 @@ namespace DefaultNamespace
                 float normalisedTime = (float) playable.GetTime();
                 float remainingWeight = 1 - totalWeight;
 
-                float blendedResultSpeed = blendedSpeed + startSpeed * remainingWeight;
-                float blendedResultIntensity = blendedIntensity + startIntensity * remainingWeight;
-                Vector3 blendedResultAxis = blendedAxis + startAxis * remainingWeight;
+                float resultSpeed = blendedSpeed + StartSpeed * remainingWeight;
+                float resultIntensity = blendedIntensity + StartIntensity * remainingWeight;
+                Vector3 resultAxis = blendedAxis + StartAxis * remainingWeight;
                 
-                Vector3 randomPoint = Random.insideUnitSphere;
-                randomPoint.x *= blendedResultAxis.x;
-                randomPoint.y *= blendedResultAxis.y;
-                randomPoint.z *= blendedResultAxis.z;
-                
-                targetTransform.localPosition = startPos + (normalisedTime + blendedResultSpeed) * (blendedResultIntensity / 100f) * randomPoint;
+                ApplyNoise(normalisedTime, resultSpeed, resultIntensity, resultAxis);
             }
+        }
+
+        protected virtual void ApplyNoise(float time, float speed, float intensity, Vector3 axis)
+        {
+            Vector3 randomPoint = Random.insideUnitSphere;
+            randomPoint.x *= axis.x;
+            randomPoint.y *= axis.y;
+            randomPoint.z *= axis.z;
+                
+            targetTransform.localPosition = startPos + (time + speed) * (intensity / 100f) * randomPoint;
         }
 
         public override void OnPlayableDestroy(Playable playable)
