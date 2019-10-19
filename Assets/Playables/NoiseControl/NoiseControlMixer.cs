@@ -9,7 +9,7 @@ namespace DefaultNamespace
         protected Transform targetTransform;
         protected Vector3 startPos;
 
-        private bool firstFrameHappened;
+        protected bool firstFrameHappened;
         private const float StartSpeed = 0;
         private const float StartIntensity = 0;
         private static readonly Vector3 StartAxis = new Vector3(0,0,0);
