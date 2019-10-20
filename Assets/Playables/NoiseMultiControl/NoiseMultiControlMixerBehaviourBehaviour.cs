@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace Playables
 {
-    public class NoiseMultiControlMixer : NoiseControlMixer
+    public class NoiseMultiControlMixerBehaviourBehaviour : NoiseControlMixerBehaviour
     {
         protected Dictionary<Transform, Vector3> transformWithStartPositionMap = new Dictionary<Transform, Vector3>();
         

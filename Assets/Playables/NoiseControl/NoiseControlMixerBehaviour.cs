@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 namespace Playables
 {
-    public class NoiseControlMixer : PlayableBehaviour
+    public class NoiseControlMixerBehaviour : PlayableBehaviour
     {
         protected Transform targetTransform;
         protected Vector3 startPos;
