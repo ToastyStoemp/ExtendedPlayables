@@ -11,7 +11,7 @@ namespace Playables
     {
         public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount)
         {
-            return ScriptPlayable<NoiseMultiControlMixer>.Create(graph, inputCount);
+            return ScriptPlayable<NoiseMultiControlMixerBehaviourBehaviour>.Create(graph, inputCount);
         }
     }
 }
