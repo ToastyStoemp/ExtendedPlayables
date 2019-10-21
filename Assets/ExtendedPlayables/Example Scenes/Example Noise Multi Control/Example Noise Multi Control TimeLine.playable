@@ -1,42 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2837127792652701522
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0057f4ae02d025c46b32da2272ba2adc, type: 3}
-  m_Name: NoiseMultiControlClip
-  m_EditorClassIdentifier: 
-  template:
-    speed: 10
-    intensity: 1
-    axis: {x: 1, y: 1, z: 1}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
-  m_Name: Example Noise Multi Control TimeLine
-  m_EditorClassIdentifier: 
-  m_Version: 0
-  m_Tracks:
-  - {fileID: 3143987656628502191}
-  m_FixedDuration: 0
-  m_EditorSettings:
-    m_Framerate: 60
-  m_DurationMode: 0
-  m_MarkerTrack: {fileID: 6233832224411822141}
---- !u!114 &3143987656628502191
+--- !u!114 &-6644711707328538327
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,12 +22,12 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1.0666666666666667
+    m_Start: 0.9166666666666666
     m_ClipIn: 0
-    m_Asset: {fileID: -2837127792652701522}
-    m_Duration: 5.233333333333333
+    m_Asset: {fileID: -3723332623629003635}
+    m_Duration: 5
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 3143987656628502191}
+    m_ParentTrack: {fileID: -6644711707328538327}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -128,6 +92,45 @@ MonoBehaviour:
     m_DisplayName: NoiseMultiControlClip
   m_Markers:
     m_Objects: []
+  alsoApplyOnRoot: 0
+  applyCustomDepth: 1
+  customChildDepth: 1
+--- !u!114 &-3723332623629003635
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0057f4ae02d025c46b32da2272ba2adc, type: 3}
+  m_Name: NoiseMultiControlClip
+  m_EditorClassIdentifier: 
+  settings:
+    speed: 10
+    intensity: 1
+    axis: {x: 1, y: 1, z: 1}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
+  m_Name: Example Noise Multi Control TimeLine
+  m_EditorClassIdentifier: 
+  m_Version: 0
+  m_Tracks:
+  - {fileID: -6644711707328538327}
+  m_FixedDuration: 0
+  m_EditorSettings:
+    m_Framerate: 60
+  m_DurationMode: 0
+  m_MarkerTrack: {fileID: 6233832224411822141}
 --- !u!114 &6233832224411822141
 MonoBehaviour:
   m_ObjectHideFlags: 1
