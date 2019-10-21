@@ -8,16 +8,24 @@ namespace ExtendedPlayables
     {
         protected Transform targetTransform;
         protected Vector3 startPos;
+        protected Quaternion startRot;
+        protected Vector3 startScale;
 
         protected bool firstFrameHappened;
         private const float StartSpeed = 0;
         private const float StartIntensity = 0;
         private static readonly Vector3 StartAxis = new Vector3(0,0,0);
+        
+        public NoiseMode noiseMode;
+
+        public Vector2 rotationRange;
 
         protected virtual void SetupFirstFrame(Transform playableTransform)
         {
             targetTransform = playableTransform;
             startPos = targetTransform.localPosition;
+            startRot = targetTransform.localRotation;
+            startScale = targetTransform.localScale;
 
             firstFrameHappened = true;
         }
@@ -79,8 +87,24 @@ namespace ExtendedPlayables
             randomPoint.x *= axis.x;
             randomPoint.y *= axis.y;
             randomPoint.z *= axis.z;
-                
-            targetTransform.localPosition = startPos + (time + speed) * (intensity / 100f) * randomPoint;
+
+            if ((noiseMode & NoiseMode.Translate) != 0)
+            {
+                targetTransform.localPosition = startPos + (time + speed) * (intensity / 100f) * randomPoint;
+            }
+
+            if ((noiseMode & NoiseMode.Rotate) != 0)
+            {
+                targetTransform.localRotation = startRot * Quaternion.Euler(
+                                                    Random.Range(rotationRange.x,rotationRange.y) * axis.x * (time + speed) * (intensity / 100f),
+                                                    Random.Range(rotationRange.x,rotationRange.y) * axis.y * (time + speed) * (intensity / 100f),
+                                                    Random.Range(rotationRange.x,rotationRange.y) * axis.z * (time + speed) * (intensity / 100f));
+            }
+
+            if ((noiseMode & NoiseMode.Scale) != 0)
+            {
+                targetTransform.localScale = startScale + (time + speed) * (intensity / 100f) * randomPoint;
+            }
         }
 
         public override void OnPlayableDestroy(Playable playable)
@@ -89,6 +113,8 @@ namespace ExtendedPlayables
             if (targetTransform != null)
             {
                 targetTransform.localPosition = startPos;
+                targetTransform.localRotation = startRot;
+                targetTransform.localScale = startScale;
             }
         }
     }
