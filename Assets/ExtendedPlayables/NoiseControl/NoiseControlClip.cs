@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-namespace Playables
+namespace ExtendedPlayables
 {
     public class NoiseControlClip : PlayableAsset, ITimelineClipAsset
     {

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using Random = UnityEngine.Random;
 
-namespace Playables
+namespace ExtendedPlayables
 {
     public class NoiseMultiControlMixerBehaviourBehaviour : NoiseControlMixerBehaviour
     {

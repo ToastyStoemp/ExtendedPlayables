@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-namespace Playables
+namespace ExtendedPlayables
 {
     [TrackColor(1,0,0)]
     [TrackBindingType(typeof(Transform))]

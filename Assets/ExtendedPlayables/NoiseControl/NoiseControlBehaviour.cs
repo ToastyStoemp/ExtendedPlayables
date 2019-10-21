@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Playables;
 
-namespace Playables
+namespace ExtendedPlayables
 {
     [Serializable]
     public class NoiseControlBehaviour : PlayableBehaviour
