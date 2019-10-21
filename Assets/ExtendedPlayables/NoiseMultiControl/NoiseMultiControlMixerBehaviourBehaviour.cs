@@ -58,7 +58,8 @@ namespace Playables
             
             foreach (KeyValuePair<Transform, Vector3> keyValuePair in transformWithStartPositionMap)
             {
-                keyValuePair.Key.localPosition = keyValuePair.Value;
+                if (keyValuePair.Key != null)
+                    keyValuePair.Key.localPosition = keyValuePair.Value;
             }
         }
     }
