@@ -5,9 +5,12 @@ using Random = UnityEngine.Random;
 
 namespace ExtendedPlayables
 {
-    public class NoiseMultiControlMixerBehaviourBehaviour : NoiseControlMixerBehaviour
+    public class NoiseMultiControlMixerBehaviour : NoiseControlMixerBehaviour
     {
         protected Dictionary<Transform, Vector3> transformWithStartPositionMap = new Dictionary<Transform, Vector3>();
+        public bool alsoApplyOnRoot;
+        public bool applyCustomDepth;
+        public int customChildDepth;
         
         protected override void SetupFirstFrame(Transform playableTransform)
         {
@@ -15,9 +18,23 @@ namespace ExtendedPlayables
 
             transformWithStartPositionMap = new Dictionary<Transform, Vector3>();
 
-            foreach (Transform child in targetTransform)
+            if (!applyCustomDepth)
             {
-                transformWithStartPositionMap.Add(child, child.localPosition);
+                foreach (Transform child in targetTransform)
+                {
+                    transformWithStartPositionMap.Add(child, child.localPosition);
+                }
+            }
+            else
+            {
+                foreach (Transform child in targetTransform)
+                {
+                    if (child.childCount > 1)
+                    {
+                        Transform targetChild = child.GetChild(customChildDepth - 1);
+                        transformWithStartPositionMap.Add(targetChild, targetChild.localPosition);
+                    }
+                }
             }
         }
 
@@ -25,7 +42,7 @@ namespace ExtendedPlayables
         {
             ScriptPlayable<NoiseMultiControlBehaviour> inputPlayable = (ScriptPlayable<NoiseMultiControlBehaviour>) input;
             NoiseMultiControlBehaviour noiseBehaviour = inputPlayable.GetBehaviour();
-
+            
             speed = noiseBehaviour.speed;
             intensity = noiseBehaviour.intensity;
             axis = noiseBehaviour.axis;
@@ -33,7 +50,8 @@ namespace ExtendedPlayables
         
         protected override void ApplyNoise(float time, float speed, float intensity, Vector3 axis)
         {
-            base.ApplyNoise(time, speed, intensity, axis);
+            if (alsoApplyOnRoot)
+                base.ApplyNoise(time, speed, intensity, axis);
             
             if (transformWithStartPositionMap == null)
                 return;
