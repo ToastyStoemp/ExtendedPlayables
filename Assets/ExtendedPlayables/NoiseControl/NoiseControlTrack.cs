@@ -8,9 +8,9 @@ namespace ExtendedPlayables
     [Flags]
     public enum NoiseMode
     {
-        Translate = 1,
-        Rotate = 2,
-        Scale = 4
+        Translate = 1 << 0,
+        Rotate = 1 << 2,
+        Scale = 1 << 3
     }
     
     [TrackColor(1,0,0)]

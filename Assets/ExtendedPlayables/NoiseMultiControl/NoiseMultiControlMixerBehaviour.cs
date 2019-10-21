@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace ExtendedPlayables
 {
-    public class SmallTransform
+    public struct SmallTransform
     {
         public Vector3 pos;
         public Quaternion rot;
@@ -80,12 +80,12 @@ namespace ExtendedPlayables
                 randomPoint.y *= axis.y;
                 randomPoint.z *= axis.z;
 
-                if ((noiseMode & NoiseMode.Translate) != 0)
+                if (noiseMode.HasFlag(NoiseMode.Translate))
                 {
                     keyValuePair.Key.localPosition = keyValuePair.Value.pos + (time + speed) * (intensity / 100f) * randomPoint;
                 }
 
-                if ((noiseMode & NoiseMode.Rotate) != 0)
+                if (noiseMode.HasFlag(NoiseMode.Rotate))
                 {
                     keyValuePair.Key.localRotation = keyValuePair.Value.rot * Quaternion.Euler(
                                                          Random.Range(rotationRange.x,rotationRange.y) * axis.x * (time + speed) * (intensity / 100f),
@@ -93,7 +93,7 @@ namespace ExtendedPlayables
                                                          Random.Range(rotationRange.x,rotationRange.y) * axis.z * (time + speed) * (intensity / 100f));
                 }
 
-                if ((noiseMode & NoiseMode.Scale) != 0)
+                if (noiseMode.HasFlag(NoiseMode.Scale))
                 {
                     keyValuePair.Key.localScale = keyValuePair.Value.scale + (time + speed) * (intensity / 100f) * randomPoint;
                 }

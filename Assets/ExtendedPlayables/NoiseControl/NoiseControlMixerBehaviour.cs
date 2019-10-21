@@ -88,12 +88,12 @@ namespace ExtendedPlayables
             randomPoint.y *= axis.y;
             randomPoint.z *= axis.z;
 
-            if ((noiseMode & NoiseMode.Translate) != 0)
+            if (noiseMode.HasFlag(NoiseMode.Translate))
             {
                 targetTransform.localPosition = startPos + (time + speed) * (intensity / 100f) * randomPoint;
             }
 
-            if ((noiseMode & NoiseMode.Rotate) != 0)
+            if (noiseMode.HasFlag(NoiseMode.Rotate))
             {
                 targetTransform.localRotation = startRot * Quaternion.Euler(
                                                     Random.Range(rotationRange.x,rotationRange.y) * axis.x * (time + speed) * (intensity / 100f),
@@ -101,7 +101,7 @@ namespace ExtendedPlayables
                                                     Random.Range(rotationRange.x,rotationRange.y) * axis.z * (time + speed) * (intensity / 100f));
             }
 
-            if ((noiseMode & NoiseMode.Scale) != 0)
+            if (noiseMode.HasFlag(NoiseMode.Scale))
             {
                 targetTransform.localScale = startScale + (time + speed) * (intensity / 100f) * randomPoint;
             }
