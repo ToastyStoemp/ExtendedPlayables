@@ -39,18 +39,29 @@ namespace ExtendedPlayables
             }
             else
             {
-                foreach (Transform child in targetTransform)
+                GetChildTransforms(targetTransform, customChildDepth - 1);
+            }
+        }
+
+        private void GetChildTransforms(Transform currentParent, int depth)
+        {
+            if (depth == 0)
+            {
+                foreach (Transform child in currentParent)
                 {
-                    if (child.childCount > 1)
+                    transformWithStartPositionMap.Add(child, new SmallTransform
                     {
-                        Transform targetChild = child.GetChild(customChildDepth - 1);
-                        transformWithStartPositionMap.Add(targetChild, new SmallTransform
-                        {
-                            pos = targetChild.localPosition,
-                            rot = targetChild.localRotation,
-                            scale = targetChild.localScale
-                        });
-                    }
+                        pos = child.localPosition,
+                        rot = child.localRotation,
+                        scale = child.localScale
+                    });
+                }
+            }
+            else
+            {
+                foreach (Transform child in currentParent)
+                {
+                    GetChildTransforms(child, depth - 1);
                 }
             }
         }
