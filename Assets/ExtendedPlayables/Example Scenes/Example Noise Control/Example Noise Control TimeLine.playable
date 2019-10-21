@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d22d144170340429835db8176ef2399, type: 3}
   m_Name: NoiseControlClip(Clone)
   m_EditorClassIdentifier: 
-  template:
+  settings:
     speed: 10
     intensity: 1
     axis: {x: 1, y: 1, z: 1}
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d22d144170340429835db8176ef2399, type: 3}
   m_Name: NoiseControlClip
   m_EditorClassIdentifier: 
-  template:
+  settings:
     speed: 10
     intensity: 1
     axis: {x: 1, y: 1, z: 1}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 0
+    m_Start: 0.2
     m_ClipIn: 0
     m_Asset: {fileID: 8056018220834366149}
     m_Duration: 2.15
@@ -236,3 +236,5 @@ MonoBehaviour:
     m_DisplayName: NoiseControlClip
   m_Markers:
     m_Objects: []
+  noiseMode: 4
+  rotationRange: {x: -15, y: 15}

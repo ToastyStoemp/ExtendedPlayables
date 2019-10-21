@@ -92,8 +92,10 @@ MonoBehaviour:
     m_DisplayName: NoiseMultiControlClip
   m_Markers:
     m_Objects: []
-  alsoApplyOnRoot: 0
-  applyCustomDepth: 1
+  noiseMode: 6
+  rotationRange: {x: -15, y: 15}
+  alsoApplyOnRoot: 1
+  applyCustomDepth: 0
   customChildDepth: 1
 --- !u!114 &-3723332623629003635
 MonoBehaviour:
@@ -108,7 +110,7 @@ MonoBehaviour:
   m_Name: NoiseMultiControlClip
   m_EditorClassIdentifier: 
   settings:
-    speed: 10
+    speed: 1
     intensity: 1
     axis: {x: 1, y: 1, z: 1}
 --- !u!114 &11400000
