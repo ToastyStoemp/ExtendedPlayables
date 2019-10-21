@@ -15,8 +15,8 @@ namespace ExtendedPlayables
         protected override void SetupFirstFrame(Transform playableTransform)
         {
             base.SetupFirstFrame(playableTransform);
-
-            transformWithStartPositionMap = new Dictionary<Transform, Vector3>();
+            
+            transformWithStartPositionMap.Clear();
 
             if (!applyCustomDepth)
             {
